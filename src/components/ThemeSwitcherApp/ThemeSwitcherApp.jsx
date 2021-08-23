@@ -77,10 +77,3 @@ export const ThemeSwitcherApp = () => {
         </div>
     );
 }
-
-// const StorageInteraction = (key, bool_val) => {
-//     if (window[`localStorage`] === null) return
-//     if (bool_val) {
-//         saveJSON(key, theme_data_true);
-//     }
-// }
