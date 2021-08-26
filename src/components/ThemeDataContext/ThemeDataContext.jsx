@@ -1,7 +1,8 @@
-import React, {useContext, useMemo, useState} from "react";
+import React, {useContext, useState} from "react";
 import {useThemeStorage} from "../../hooks/useThemeStorage";
+import {ThemeContextProvider} from "../ThemeContextProvider/ThemeContextProvider";
+import {defaultValue} from "../default";
 
-export const defaultValue = {darkMode: false};
 const key = "DARK_THEME";
 const MyThemeDataContext = React.createContext(defaultValue);
 export const useThemeDataContext = () => useContext(MyThemeDataContext);
@@ -13,8 +14,8 @@ export const ThemeDataContext = ({children}) => {
         loadJSON(key).darkMode : false);
     const [button_text_value, setButton_text_value] = useState(themeIsActive ? "Turn off" : "Turn on");
 
-    const theme_data_false = useMemo(() => ({darkMode: false}), []);
-    const theme_data_true = useMemo(() => ({darkMode: true}), []);
+    const theme_data_false = {darkMode: false};
+    const theme_data_true = {darkMode: true};
 
     return (
         <MyThemeDataContext.Provider value={{
@@ -23,11 +24,12 @@ export const ThemeDataContext = ({children}) => {
             theme_data_false,
             theme_data_true,
             key,
-            defaultValue,
             setThemeIsActive,
             setButton_text_value
         }}>
-            {children}
+            <ThemeContextProvider>
+                {children}
+            </ThemeContextProvider>
         </MyThemeDataContext.Provider>
     )
 }

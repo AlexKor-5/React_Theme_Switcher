@@ -3,24 +3,21 @@ import ReactDOM from "react-dom";
 import "./variables.css";
 import "./index.css";
 import {SomeSetOfComponents} from "./components/SomeSetOfComponents/SomeSetOfComponents";
-// import {ThemeSwitcherApp} from "./components/ThemeSwitcherApp/ThemeSwitcherApp";
-import {ThemeContextProvider} from "./components/ThemeContextProvider/ThemeContextProvider";
-import {ThemeApp} from "./components/ThemeApp/ThemeApp";
+import ThemeApp from "./components/ThemeApp/ThemeApp";
 import {ThemeDataContext} from "./components/ThemeDataContext/ThemeDataContext";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
 let destination = document.querySelector("#container");
 
 ReactDOM.render(
     <>
         <React.StrictMode>
-            <SomeSetOfComponents/>
-            {/*<ThemeSwitcherApp/>*/}
-
-            <ThemeDataContext>
-                <ThemeContextProvider>
+            <ErrorBoundary>
+                <SomeSetOfComponents/>
+                <ThemeDataContext>
                     <ThemeApp/>
-                </ThemeContextProvider>
-            </ThemeDataContext>
+                </ThemeDataContext>
+            </ErrorBoundary>
         </React.StrictMode>
     </>,
     destination

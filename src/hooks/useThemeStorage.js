@@ -7,16 +7,29 @@ const loadJSON = key => {
     return key && JSON.parse(localStorage.getItem(key));
 };
 
-const themeStorageLoading = (key, data, isActive = f => f, isDeactivated = f => f) => {
+
+let truly = true; //for once start loading
+const themeStorageLoading = (key, data, activeDarkTheme = f => f, deactivateDarkTheme = f => f) => {
     if (!localStorage.getItem(key)) {
-        saveJSON(key, data);
+        saveJSON(key, data); //create local storage info
     } else {
         if (loadJSON(key).darkMode) {
-            isActive(); //activeDarkTheme();
+            if (truly)
+                activeDarkTheme();
+            truly = false;
         } else {
-            isDeactivated();//deactivateDarkTheme();
+            deactivateDarkTheme();
         }
     }
+    console.log("themeStorageLoading func works");
 };
-export const useThemeStorage = () => ({saveJSON, loadJSON, themeStorageLoading});
 
+const loaderDataOfStorage = (activeTheme = f => f) => {
+    if (localStorage.getItem("DARK_THEME"))
+        if (!!JSON.parse(localStorage.getItem("DARK_THEME")).darkMode === true) {
+            console.log("cond is true");
+            activeTheme();
+        }
+};
+
+export const useThemeStorage = () => ({saveJSON, loadJSON, themeStorageLoading, loaderDataOfStorage});
