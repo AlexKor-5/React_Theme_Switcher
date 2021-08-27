@@ -1,7 +1,23 @@
+/*:root {*/
+/*    --title_text_color: blueviolet;*/
+/*    --p_text_color: #0B0BAD;*/
+/*    --block-back: deeppink;*/
+/*    --block-border: cornflowerblue;*/
+/*    --html-back: whitesmoke;*/
+/*}*/
+
 :root {
     --title_text_color: blueviolet;
     --p_text_color: #0B0BAD;
     --block-back: deeppink;
     --block-border: cornflowerblue;
     --html-back: whitesmoke;
+}
+
+:root.dark-mode {
+    --title_text_color: #966bbb;
+    --p_text_color: #ffffff;
+    --block-back: #cb0909;
+    --block-border: #000000;
+    --html-back: #211f1f;
 }
